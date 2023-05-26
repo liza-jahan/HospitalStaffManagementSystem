@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Todo Page</title>
+    <link href="webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light mb-3 p-1">
+    <a class="navbar-brand m-1" href="https://courses.in28minutes.com">in28Minutes</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/list-todos">Todos</a></li>
+        </ul>
+    </div>
+    <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <h1>Enter Todo Details </h1>
+    <form th:object="${todo}" method="post">
+        <fieldset class="mb-3">
+            <label th:field="${todo.registrationNumber}">Registration:</label>
+            <input type="text" th:field="${todo.registrationNumber}" th:required="true">
+        </fieldset>
+        <fieldset class="mb-3">
+            <label th:field="${todo.UserName}"> Name :</label>
+            <input type="text" th:field="${todo.UserName}" th:required="true">
+        </fieldset>
+        <fieldset class="mb-3">
+            <label th:field="${todo.salary}"> Salary :</label>
+            <input type="text" th:field="${todo.salary}" th:required="true">
+        </fieldset>
+        <fieldset class="mb-3">
+            <label th:field="${todo.post}"> position :</label>
+            <input type="text" th:field="${todo.post}" th:required="true">
+        </fieldset>
+        <fieldset class="mb-3">
+            <label th:field="${todo.description}"> Description :</label>
+            <input type="text" th:field="${todo.description}" th:required="true"><br>
+            <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color:red"></span>
+        </fieldset>
+        <fieldset class="mb-3">
+            <label th:field="${todo.joinDate}"> Join Date :</label>
+            <input type="text" th:field="${todo.joinDate}" th:required="true"><br>
+        </fieldset>
+
+        <input type="hidden" th:field="${todo.id}"><br>
+        <input type="hidden" th:field="${todo.done}"><br>
+        <input type="submit" class="btn btn-success">
+    </form>
+</div>
+<script src="webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+<script src="webjars/jquery/3.6.0/jquery.min.js"></script>
+<script src="webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<script th:inline="javascript">
+    $(document).ready(function () {
+        $('#joinDate').datepicker({
+            format: 'mm/dd/yyyy'
+        });
+    });
+
+
+</script>
+
+</body>
+</html>
+

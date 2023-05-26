@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light mb-3 p-1">
+    <a class="navbar-brand m-1" href="https://courses.in28minutes.com">in28Minutes</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/list-todos">Todos</a></li>
+        </ul>
+    </div>
+    <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <div>Welcome <span th:text="${name}"></span></div>
+    <h1>Employees</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <!--  <th>Id</th>-->
+            <th>Registration</th>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>position</th>
+            <th>Join Date</th>
+            <th>Description</th>
+            <th>Present</th>
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="todos : ${todos}">
+            <!--   <td th:text="${todos.id}"></td>-->
+            <td th:text="${todos.registrationNumber}"></td>
+            <td th:text="${todos.UserName}"></td>
+            <td th:text="${todos.salary}"></td>
+            <td th:text="${todos.post}"></td>
+            <td th:text="${todos.joinDate}"></td>
+            <td th:text="${todos.description}"></td>
+            <td th:text="${todos.done}"></td>
+            <td><a th:href="@{'delete-todo?id=' + ${todos.id}}" class="btn btn-warning">Delete</a></td>
+            <td><a th:href="@{'update-todo?id=' + ${todos.id}}" class="btn btn-primary">Update </span></a></td>
+        </tr>
+
+        </tbody>
+    </table>
+    <a href="add-todo" class="btn btn-success">Add Todo</a>
+</div>
+<script src="webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+<script src="webjars/jquery/3.6.0/jquery.min.js"></script>
+
+</body>
+</html>
