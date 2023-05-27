@@ -1,6 +1,5 @@
 package com.example.hospitalstaffmanagementsystem.todo;
 
-import ch.qos.logback.core.model.Model;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -8,7 +7,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.naming.Binding;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -23,7 +21,7 @@ public class TodoController {
 
     @RequestMapping("list-todos")
     public String listAllTodos(ModelMap model) {
-        String username=(String)model.get("name");
+        String username = (String) model.get("name");
         List<Todo> todos = todoService.findByUsername(username);
         model.addAttribute("todos", todos);
 
@@ -32,11 +30,13 @@ public class TodoController {
 
     @RequestMapping(value = "add-todo", method = RequestMethod.GET)
     public String showNewTodoPage(ModelMap model) {
+        String username = getLoggedInUsername(model);
         Todo todo = new Todo(0, "", "", ' ', "", "", LocalDate.now().minusYears(5), false);
         model.put("todo", todo);
 
         return "todo";
     }
+
 
     @RequestMapping(value = "add-todo", method = RequestMethod.POST)
     public String addNewTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
@@ -58,13 +58,14 @@ public class TodoController {
     }
 
     @RequestMapping(value = "update-todo", method = RequestMethod.GET)
-    public String updateTotoPage(@RequestParam int id,ModelMap model) {
-        Todo todo=todoService.findById(id);
+    public String updateTotoPage(@RequestParam int id, ModelMap model) {
+        Todo todo = todoService.findById(id);
 
         todoService.deleteById(id);
-        model.addAttribute("todo",todo);
+        model.addAttribute("todo", todo);
         return "todo";
     }
+
     @RequestMapping(value = "update-todo", method = RequestMethod.POST)
     public String updateTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
         if (result.hasErrors()) {
@@ -72,9 +73,13 @@ public class TodoController {
 
         }
 
-/*        String username=(String) model.get("UserName");
-          todo.setUserName(username);*/
+        String username = getLoggedInUsername(model);
+        todo.setUserName(username);
         todoService.updateTodo(todo);
         return "redirect:list-todos";
+    }
+
+    private String getLoggedInUsername(ModelMap model) {
+        return (String) model.get("name");
     }
 }
