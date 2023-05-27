@@ -1,6 +1,8 @@
 package com.example.hospitalstaffmanagementsystem.controller;
 
 import com.example.hospitalstaffmanagementsystem.Service.AuthenticationService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +25,7 @@ public class LogInController {
 /*
     public String gotoLoginPage(ModelMap model) {*/
     public String gotoWelcomePage(ModelMap model) {
-        model.put("name", "Liza");
+        model.put("name", getLoggedInUsername());
         return "welcomePage";
     }
   /*  @RequestMapping(value = "login",method = RequestMethod.POST)
@@ -39,4 +41,8 @@ public class LogInController {
        return "login";
     }
 */
+  private String getLoggedInUsername() {
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      return authentication.getName();
+  }
 }

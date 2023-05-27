@@ -22,8 +22,4 @@ public class SecurityConfiguration {
         return new InMemoryUserDetailsManager(userDetails);
     }
 
-    private String getLoggedInUsername() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
-    }
 }
