@@ -1,11 +1,14 @@
 package com.example.hospitalstaffmanagementsystem.security;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 public class SecurityConfiguration {
 
+
+    @Bean
     public InMemoryUserDetailsManager createUserDetailsManager(){
        UserDetails userDetails= User.withDefaultPasswordEncoder()
                 .username("Liza")
