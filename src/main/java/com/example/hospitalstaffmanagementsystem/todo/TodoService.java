@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 @Service
 public class TodoService {
     private static List<Todo> todos = new ArrayList<>();
-    private static int todoCount;
+    private static int todoCount=0;
 
     static {
         todos.add(new Todo(++todoCount, "A-1234", "Liza", 20000, "Receptionist", "She is honest person", LocalDate.now().plusYears(1), false));

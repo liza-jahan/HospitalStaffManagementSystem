@@ -1,19 +1,26 @@
 package com.example.hospitalstaffmanagementsystem.todo;
 
-import jakarta.validation.constraints.Size;
 
+import jakarta.validation.constraints.Size;
+import nonapi.io.github.classgraph.json.Id;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.time.LocalDate;
 
 public class Todo {
-/*
-    id,Username,Salary,Post,Description,JoinDate,RegistrationNumber
-*/
+    /*
+        id,Username,Salary,Post,Description,JoinDate,RegistrationNumber
+    */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private  String registrationNumber;
     private  String UserName;
     private int salary;
     private  String post;
     @Size(min=10,message ="Enter atleast 10 characters")
+
     private  String description;
     private LocalDate joinDate;
     private boolean done;

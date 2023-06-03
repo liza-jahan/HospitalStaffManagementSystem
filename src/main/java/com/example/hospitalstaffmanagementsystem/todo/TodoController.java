@@ -33,7 +33,7 @@ public class TodoController {
 
     @RequestMapping(value = "add-todo", method = RequestMethod.GET)
     public String showNewTodoPage(ModelMap model) {
-        String username = getLoggedInUsername(model);
+   //     String username = getLoggedInUsername(model);
         Todo todo = new Todo(0, "", "",  ' ', "", "", LocalDate.now().minusYears(5), false);
         model.put("todo", todo);
 
@@ -54,17 +54,17 @@ public class TodoController {
     }
 
     @RequestMapping("delete-todo")
-    public String deleteTodos(@RequestParam int id) {
+    public String deleteTodo(@RequestParam int id) {
 
         todoService.deleteById(id);
         return "redirect:list-todos";
     }
 
     @RequestMapping(value = "update-todo", method = RequestMethod.GET)
-    public String updateTotoPage(@RequestParam int id, ModelMap model) {
+    public String updateTodoPage(@RequestParam int id, ModelMap model) {
         Todo todo = todoService.findById(id);
 
-        todoService.deleteById(id);
+       /* todoService.deleteById(id);*/
         model.addAttribute("todo", todo);
         return "todo";
     }
@@ -75,7 +75,6 @@ public class TodoController {
             return "todo";
 
         }
-
         String username = getLoggedInUsername(model);
         todo.setUserName(username);
         todoService.updateTodo(todo);
@@ -84,6 +83,7 @@ public class TodoController {
 
     private String getLoggedInUsername(ModelMap model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
-    }
+        return authentication.getName();}
+
+
 }
