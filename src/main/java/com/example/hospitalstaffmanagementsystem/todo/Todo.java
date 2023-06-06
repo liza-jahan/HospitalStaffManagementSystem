@@ -2,45 +2,43 @@ package com.example.hospitalstaffmanagementsystem.todo;
 
 
 import jakarta.validation.constraints.Size;
-import nonapi.io.github.classgraph.json.Id;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "staffList")
 public class Todo {
     /*
         id,Username,Salary,Post,Description,JoinDate,RegistrationNumber
     */
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
+    @Column(nullable = false, unique = true, length = 7)
     private  String registrationNumber;
+    @Column(nullable = false, unique = false, length = 20)
     private  String UserName;
+    @Column(nullable = false, unique = false, length = 15)
     private int salary;
+    @Column(nullable = false, unique = false, length = 15)
     private  String post;
     @Size(min=10,message ="Enter atleast 10 characters")
-
     private  String description;
     private LocalDate joinDate;
-    private boolean done;
+    @Column(nullable = false, unique = false, length = 5)
+    private String done;
+    @Column(nullable = false, unique = true, length = 45)
+    private  String email;
 
-    public Todo(int id, String registrationNumber, String UserName, int salary, String post, String description, LocalDate joinDate, boolean done) {
-        this.id = id;
-        this.registrationNumber = registrationNumber;
-        this.UserName = UserName;
-        this.salary = salary;
-        this.post = post;
-        this.description = description;
-        this.joinDate = joinDate;
-        this.done = done;
-    }
+    public Todo() {}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -92,17 +90,37 @@ public class Todo {
         this.joinDate = joinDate;
     }
 
-    public boolean isDone() {
+    public String isDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(String done) {
         this.done = done;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Todo(Integer id, String registrationNumber, String userName, int salary, String post, String description, LocalDate joinDate, String done, String email) {
+        this.id = id;
+        this.registrationNumber = registrationNumber;
+        UserName = userName;
+        this.salary = salary;
+        this.post = post;
+        this.description = description;
+        this.joinDate = joinDate;
+        this.done = done;
+        this.email = email;
     }
 
     @Override
     public String toString() {
-        return "ToDo{" +
+        return "Todo{" +
                 "id=" + id +
                 ", registrationNumber='" + registrationNumber + '\'' +
                 ", UserName='" + UserName + '\'' +
@@ -111,6 +129,7 @@ public class Todo {
                 ", description='" + description + '\'' +
                 ", joinDate=" + joinDate +
                 ", done=" + done +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
