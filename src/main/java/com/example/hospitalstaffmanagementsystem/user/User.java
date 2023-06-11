@@ -1,10 +1,10 @@
 package com.example.hospitalstaffmanagementsystem.user;
 
-import nonapi.io.github.classgraph.json.Id;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 
+@Entity
+@Table(name="user")
 public class User {
 
     @Id
@@ -22,6 +22,8 @@ public class User {
         this.password = password;
         this.registrationNumber = registrationNumber;
     }
+
+    public User() {}
 
     public int getId() {
         return id;

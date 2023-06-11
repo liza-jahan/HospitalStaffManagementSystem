@@ -14,8 +14,8 @@ public class TodoService {
     private static int todoCount=0;
 
     static {
-        todos.add(new Todo(++todoCount, "A-1234", "Liza", 20000, "Receptionist", "She is honest person", LocalDate.now().plusYears(1), false));
-        todos.add(new Todo(++todoCount, "A-1235", "Moli", 20000, "Receptionist", "She is honest person", LocalDate.now().minusYears(4), true));
+        todos.add(new Todo(++todoCount, "A-1234", "Liza", 20000, "Receptionist", "She is honest person", LocalDate.now().plusYears(1), "yes"));
+        todos.add(new Todo(++todoCount, "A-1235", "Moli", 20000, "Receptionist", "She is honest person", LocalDate.now().minusYears(4), "true"));
     }
 
     private Todo todo;
@@ -26,7 +26,7 @@ public class TodoService {
         return todos.stream().filter(predicate).toList();
     }
 
-    public void addTodo(String registrationNumber, String UserName, int salary, String post, String description, LocalDate joinDate, boolean done) {
+    public void addTodo(String registrationNumber, String UserName, int salary, String post, String description, LocalDate joinDate, String done) {
         Todo todo = new Todo(++todoCount, registrationNumber, UserName, salary, post, description, joinDate, done);
         todos.add(todo);
     }

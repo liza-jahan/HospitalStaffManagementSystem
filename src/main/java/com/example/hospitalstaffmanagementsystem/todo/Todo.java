@@ -29,8 +29,6 @@ public class Todo {
     private LocalDate joinDate;
     @Column(nullable = false, unique = false, length = 5)
     private String done;
-    @Column(nullable = false, unique = true, length = 45)
-    private  String email;
 
     public Todo() {}
 
@@ -98,15 +96,9 @@ public class Todo {
         this.done = done;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
-    public Todo(Integer id, String registrationNumber, String userName, int salary, String post, String description, LocalDate joinDate, String done, String email) {
+    public Todo(Integer id, String registrationNumber, String userName, int salary, String post, String description, LocalDate joinDate, String done) {
         this.id = id;
         this.registrationNumber = registrationNumber;
         UserName = userName;
@@ -115,7 +107,7 @@ public class Todo {
         this.description = description;
         this.joinDate = joinDate;
         this.done = done;
-        this.email = email;
+
     }
 
     @Override
@@ -129,7 +121,7 @@ public class Todo {
                 ", description='" + description + '\'' +
                 ", joinDate=" + joinDate +
                 ", done=" + done +
-                ", email='" + email + '\'' +
+
                 '}';
     }
 }
