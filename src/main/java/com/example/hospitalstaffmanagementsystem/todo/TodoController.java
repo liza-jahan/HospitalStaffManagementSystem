@@ -48,7 +48,7 @@ public class TodoController {
 
         }
 
-        todoService.addTodo(todo.getRegistrationNumber(), todo.getUserName(), todo.getSalary(), todo.getPost(), todo.getDescription(), todo.getJoinDate(), false);
+        todoService.addTodo(todo.getRegistrationNumber(), todo.getUserName(), todo.getSalary(), todo.getPost(), todo.getDescription(), todo.getJoinDate(), "false");
 
         return "redirect:list-todos";
     }
